@@ -11,8 +11,8 @@
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>
 #include <WebSerial.h>
-#include "config.h"
-#include "helpers.h"
+#include "src/config.h"
+#include "src/helpers/helpers.h"
 
 AsyncWebServer server(80);
 long randNumber;
@@ -65,7 +65,7 @@ void otaUpdate() {
     .onEnd([]() {
       Serial.println("\nEnd");
     })
-    .onProgress([](unsigned int progress, unsigned int total) {
+    .onProgress([](unsigned int progress, unsigned int total) { // Corrigir aqui
       Serial.printf("Progress: %u%%\r", (progress / (total / 100)));
     })
     .onError([](ota_error_t error) {
